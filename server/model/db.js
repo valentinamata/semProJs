@@ -59,7 +59,6 @@ var TeamsSchema = new mongoose.Schema({
 exports.TeamsModel = mongoose.model('teams', TeamsSchema);
 
 var CommentsSchema = new mongoose.Schema({
-  _id : Number,
   comm : String,
   team : {type : String, ref : 'teams'}
 })
@@ -67,4 +66,11 @@ var CommentsSchema = new mongoose.Schema({
 exports.CommentsModel = mongoose.model('comments', CommentsSchema);
 
 
+var UserSchema = new mongoose.Schema({
+    username : String,
+    password : String,
+    email : String,
+    status : String
+})
 
+exports.UsersModel = mongoose.model('users', UserSchema);

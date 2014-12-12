@@ -1,7 +1,44 @@
-<p>This is the partial for view 3.</p>
-<p>Data is fetched from a REST service, connected to MongoDB </p>
-<ul>
-  <p style="color: red">{{error}}</p>
-  <li ng-repeat="user in users"> {{user.userName}} {{user.email}} </li>
-</ul>
-</p>
+<style>
+  .table-hover > tbody > tr:hover > td,
+  .table-hover > tbody > tr:hover > th {
+    background-color: #d9edf7;
+  }
+</style>
+<p style="color: red">{{error}}</p>
+<div class="row">
+  <div class="col-md-5" style="height: 500px;overflow-y: auto;">
+    <table class="table table-scripted table-hover">
+      <tr class="info">
+        <td>
+          <accordion close-others="true">
+            <accordion-group  heading="{{teamName.teamName}}" ng-repeat="teamName in teams" ng-click="getAllCommentsByTeamId(teamName.teamName)">
+              <p><table class="table">
+              <tbody>
+              <tr  ng-repeat="comm in comms">
+                <td>{{comm.comm}} <button type="submit" ng-click="editComm(comm)" ng-model="ngComment"  class="btn btn-primary">Edit</button>
+                  <button type="submit" ng-click="deleteComment(comm)" ng-model="ngComment"  class="btn btn-primary">Delete</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+              </p>
+            </accordion-group>
+          </accordion>
+        </td>
+      </tr>
+    </table>
+    <div class="form-group">
+      <label for="comm" class="control-label col-xs-3" ><span class="label label-info">Comment</span></label>
+      <div class="col-xs-9">
+        <input type="text" ng-model="ngComment.comm" class="form-control" id="comm" placeholder="Comment">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="team" class="control-label col-xs-3" ><span class="label label-info">Team</span></label>
+      <div class="col-xs-9">
+        <input type="text" ng-model="ngComment.team" class="form-control" id="team" placeholder="Team">
+      </div>
+    </div>
+    <button type="submit" ng-click="saveComment(ngComment)"  class="btn btn-primary">Save</button>
+  </div>
+</div>

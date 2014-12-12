@@ -1,4 +1,4 @@
-//global.TEST_DATABASE = "mongodb://localhost/TestDataBase_xx1243";
+
 
 var should = require("should");
 var app = require("../../server/app");
@@ -29,8 +29,8 @@ describe('REST API for /teams', function () {
       var w3 = {"_id": 5, "teamName": "Bla3", "votes": 5};
 
       comment.remove({},function(){
-        var w4 = {"_id": 6, comm: "wer", team: "Bla"};
-        var w5 ={"_id": 7, comm: "werz", team: "Bla"};
+        var w4 = { comm: "wer", team: "Bla"};
+        var w5 ={ comm: "werz", team: "Bla"};
         team.create(w1, function (err) {
           team.create(w2, function (err) {
             team.create(w3, function (err) {

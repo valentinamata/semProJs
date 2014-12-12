@@ -3,56 +3,90 @@
 angular.module('myAppRename.view3', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view3', {
+  $routeProvider
+      .when('/comments', {
     templateUrl: 'app/view3/view3.html',
-    controller: 'View3Ctrl'
-  });
+    controller: 'ViewComments'
+  })
+   .when("/comment/:teamName", {
+            templateUrl: "app/view3/commentsF.htm",
+            controller: "ViewComments"
+        })
+      .when("/comment", {
+          templateUrl: "app/view3/commentsFUK.htm",
+          controller: "ViewComments"
+      })
 }])
 
-    .controller('ViewVoteTeam', ['$scope','$http', 'WikiFactory', function ($scope, $http,  WikiFactory){
-      $scope.getAllComments = function(teamName){
+    .controller('ViewComments', ['$scope','$http', 'WikiFactory', function ($scope, $http,  WikiFactory){
+      $scope.getAllCommentsByTeamId = function(teamName){
+var justOneComment = [];
 
-
-        $http({
-          method: 'GET',
-          url: 'api/getComments'+ teamName
-        })
+          WikiFactory.getAllCommentsByTeamId(teamName)
             .success(function (data, status, headers, config) {
-              $scope.comments = data;
+                  console.log("sdgdfkngkdf " + data[0].comm);
+                  $scope.comms = data;
+                  justOneComment = data;
             }).
             error(function (data, status, headers, config) {
               $scope.error = data;
             });
       }
 
-      $scope.updateComment = function(commentId){
-        $http({
-          method: 'PUT',
-          url: 'api/updateComment/'+ commentId
-        })
+
+        $scope.saveComment = function(ngComment){
+            if($scope.ngComment._id != null){
+
+                console.log($scope.ngComment._id);
+                WikiFactory.updateComment(ngComment);
+
+                $scope.ngComment =null;
+            }
+            else{
+                WikiFactory.addComm(ngComment);
+                $scope.ngComment =null;
+            }
+
+        }
+
+
+
+        $scope.editComm = function(ngComment){
+            $scope.ngComment = ngComment;
+        }
+
+        WikiFactory.getAllTeams()
             .success(function (data, status, headers, config) {
-              $scope.commentUpdated = data;
+                $scope.teams = data;
+
             }).
             error(function (data, status, headers, config) {
-              $scope.error = data;
+                $scope.error = data;
             });
-      }
 
-      $scope.getAllTeams = function(){
+        $scope.addComm = function(comment){
+            WikiFactory.addComm(comment)
+                .success(function (data, status, headers, config) {
+                    $scope.addComm = data;
+                }).
+                error(function (data, status, headers, config) {
+                    $scope.error = data;
+                });
+        }
 
 
-        $http({
-          method: 'GET',
-          url: 'api/teams'
-        })
-            .success(function (data, status, headers, config) {
-              $scope.teams = data;
-            }).
-            error(function (data, status, headers, config) {
-              $scope.error = data;
-            });
-      }
+
+
+        $scope.deleteComment = function(comment){
+            WikiFactory.deleteComment(comment)
+                .success(function (data, status, headers, config) {
+                    $scope.deleteComm = data;
+                }).
+                error(function (data, status, headers, config) {
+                    $scope.error = data;
+                });
+        }
+
     }]);
-
 
 
