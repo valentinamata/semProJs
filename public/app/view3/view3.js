@@ -20,7 +20,8 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
     .controller('ViewComments', ['$scope','$http', 'WikiFactory', function ($scope, $http,  WikiFactory){
       $scope.getAllCommentsByTeamId = function(teamName){
-var justOneComment = [];
+       var justOneComment = [];
+
 
           WikiFactory.getAllCommentsByTeamId(teamName)
             .success(function (data, status, headers, config) {

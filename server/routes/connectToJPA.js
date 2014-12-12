@@ -11,13 +11,13 @@ var httpPost = function(username, password, email, status,callback){
 
     var postData = JSON.stringify(obj);
     var options = {
-        hostname : "localhost",
+        hostname : "137.135.179.104",
         port : "3333",
         method : 'POST',
         path : '/user',
         headers : {
-            'Content=Type' : 'application/json',
-            'Content-Lenght': postData.length
+            'Content-Type' : 'application/json',
+            'Content-Length': postData.length
         }
     };
 
@@ -30,9 +30,9 @@ var httpPost = function(username, password, email, status,callback){
             callback(null, JSON.stringify(result));
         })
     });
- request.on('error', function(e){
-     callback(e);
- })
+    request.on('error', function(e){
+        callback(e);
+    })
     request.write(postData);
     request.end();
 
@@ -40,9 +40,8 @@ var httpPost = function(username, password, email, status,callback){
 
 var httpSend = function(username, callback)
 {
-
     var options={
-        hostname:'localhost',
+        hostname:'137.135.179.104',
         port:'3333',
         method:'GET',
         path: '/user/' + encodeURIComponent(username)
@@ -53,6 +52,7 @@ var httpSend = function(username, callback)
         var result="";
         res.on('data', function(details)
         {
+            // console.log(details + " 123")
             result+=details;
         });
         res.on('end',function() {

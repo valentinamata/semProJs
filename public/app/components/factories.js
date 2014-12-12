@@ -25,7 +25,8 @@ angular.module('myAppRename.factories', []).
         return $http.delete(url+'/deleteComment/'+comm._id);
       }
       api.createU = function(obj){
-        return $http.post(url + '/newUser' , obj);
+        console.log(obj + " factories")
+        return $http.post(url +'/newUser', obj);
       }
 
 

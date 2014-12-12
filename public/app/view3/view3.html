@@ -12,11 +12,12 @@
         <td>
           <accordion close-others="true">
             <accordion-group  heading="{{teamName.teamName}}" ng-repeat="teamName in teams" ng-click="getAllCommentsByTeamId(teamName.teamName)">
+
               <p><table class="table">
               <tbody>
-              <tr  ng-repeat="comm in comms">
-                <td>{{comm.comm}} <button type="submit" ng-click="editComm(comm)" ng-model="ngComment"  class="btn btn-primary">Edit</button>
-                  <button type="submit" ng-click="deleteComment(comm)" ng-model="ngComment"  class="btn btn-primary">Delete</button>
+              <tr  ng-repeat="oneCommetn in comms">
+                <td>{{oneCommetn.comm}} <button type="submit" ng-click="editComm(oneCommetn)" ng-model="ngComment"  class="btn btn-primary">Edit</button>
+                  <button type="submit" ng-click="deleteComment(oneCommetn)" ng-model="ngComment"  class="btn btn-primary">Delete</button>
                 </td>
               </tr>
               </tbody>

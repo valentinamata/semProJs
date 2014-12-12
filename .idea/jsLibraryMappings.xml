@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{ExpressAngularSeed node_modules}" />
-    <file url="file://$PROJECT_DIR$/test/backend-tests/restAPITests.js" libraries="{mocha-DefinitelyTyped}" />
-    <file url="PROJECT" libraries="{angularjs-DefinitelyTyped, express-DefinitelyTyped, mocha-DefinitelyTyped, mongodb-DefinitelyTyped, mongoose-DefinitelyTyped, node-DefinitelyTyped, npm-DefinitelyTyped, should-DefinitelyTyped}" />
-    <includedPredefinedLibrary name="Node.js Globals" />
+    <file url="file://$PROJECT_DIR$" libraries="{FirstWebPage node_modules}" />
   </component>
 </project>

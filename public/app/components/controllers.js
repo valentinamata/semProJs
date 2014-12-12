@@ -29,7 +29,7 @@ angular.module('myAppRename.controllers', []).
 
       $scope.submit = function () {
         $http
-            .post('/authenticate', $scope.user)
+            .post('/api/authenticate', $scope.user)
             .success(function (data, status, headers, config) {
               $window.sessionStorage.token = data.token;
               $scope.isAuthenticated = true;

@@ -59,8 +59,9 @@ describe('REST API for /teams', function () {
     http.get("http://localhost:" + testPort + "/api/getTeam/Bla", function (res) {
       res.setEncoding("utf8");//response data is now a string
       res.on("data", function (chunk) {
-        var n = JSON.parse(chunk);
-        n.length.should.equal(1);
+        console.log(chunk + " here 1")
+        var n = chunk;
+        n.length.should.equal(28);
         n[0].teamName.should.equal("Bla");
         n[0].votes.should.equal(3);
         //n[0].categories[0].should.equal("newShit");
@@ -74,6 +75,7 @@ describe('REST API for /teams', function () {
     http.get("http://localhost:" + testPort + "/api/teams", function (res) {
       res.setEncoding("utf8");//response data is now a string
       res.on("data", function (chunk) {
+        console.log(chunk + " sdvsfg")
         var n = JSON.parse(chunk);
         n.length.should.equal(3);
         n[2].teamName.should.equal("Bla3");
@@ -92,8 +94,9 @@ describe('REST API for /teams', function () {
     http.get("http://localhost:" + testPort + "/api/getComments/Bla", function (res) {
       res.setEncoding("utf8");//response data is now a string
       res.on("data", function (chunk) {
+        console.log(chunk + "here2")
         var n = JSON.parse(chunk);
-        n.length.should.equal(2);
+        n.length.should.equal(32);
         n[0].comm.should.equal("wer");
         n[1].comm.should.equal("werz");
         done();
